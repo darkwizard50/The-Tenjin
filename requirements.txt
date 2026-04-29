@@ -1,0 +1,8 @@
+requests
+feedparser
+rapidfuzz
+yfinance
+pandas
+numpy
+psycopg2-binary
+flask
