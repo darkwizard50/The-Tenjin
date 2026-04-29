@@ -1,0 +1,39 @@
+name: Market Bot
+
+on:
+  schedule:
+
+    # 8 AM – 9 AM IST → every 10 mins
+    - cron: "*/10 2-3 * * 1-5"
+
+    # 9 AM – 3:30 PM IST → every 2 mins
+    - cron: "*/2 3-10 * * 1-5"
+
+    # 3:30 PM – 5 PM IST → every 5 mins
+    - cron: "*/5 10-11 * * 1-5"
+
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_IDS: ${{ secrets.CHAT_IDS }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          UPSTOX_ACCESS_TOKEN: ${{ secrets.UPSTOX_ACCESS_TOKEN }}
+        run: python -m app.main
