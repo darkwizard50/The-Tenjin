@@ -16,3 +16,4 @@ The script runs in a loop until you stop it.
 
 `BOT_TOKEN` and `CHAT_ID` are currently set inside `app/main.py`. For better
 security you can move them to environment variables.
+test 
