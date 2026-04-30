@@ -175,7 +175,7 @@ class RSIEngine:
 
         rsi_series = calc_rsi(closes)
         yahoo_rsi = float(rsi_series.iloc[-1])
-        telegram_send(f"TEST RSI WORKING {symbol} → {yahoo_rsi}")
+      
         if pd.isna(yahoo_rsi):
             return
 
